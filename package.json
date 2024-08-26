@@ -7,7 +7,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+<<<<<<< HEAD
    "prod-build-dev" : "ng build --prod --build-optimizer"
+=======
+    "prod-build-dev": "ng build --prod--build-optimizer"
+>>>>>>> 845dced (first commit)
 
   },
   "private": true,
@@ -33,7 +37,7 @@
     "primeng": "^16.3.1",
     "rxjs": "~7.8.0",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.7.32",
+    "sweetalert2": "^11.6.13",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
