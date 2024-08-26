@@ -6,8 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
-    "prod-build-dev": "ng build --prod --build-optimizer"
+    "test": "ng test",
+   "prod-build-dev" : "ng build --prod --build-optimizer"
+
   },
   "private": true,
   "dependencies": {
