@@ -7,11 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-<<<<<<< HEAD
    "prod-build-dev" : "ng build --prod --build-optimizer"
-=======
-    "prod-build-dev": "ng build --prod--build-optimizer"
->>>>>>> 845dced (first commit)
+
 
   },
   "private": true,
