@@ -1,0 +1,172 @@
+<!-- Header with Buttons -->
+<div class="header">
+  <div class="button-container sb">
+    <button class="d" (click)="toggleDeleteSkill()">
+      <!-- SVG Icon for Delete -->
+      Delete
+    </button>
+    <button class="d" (click)="toggleEditSkill()">
+      <!-- SVG Icon for Edit -->
+      Edit
+    </button>
+    <button class="ad" (click)="toggleAddSkill()">
+      <!-- SVG Icon for Add -->
+      <div class="ac">Add Skills</div>
+    </button>
+  </div>
+</div>
+
+<!-- Add Skills Form -->
+<div *ngIf="showAddSkillBox">
+  <div class="form-container">
+    <form>
+      <div class="head7">
+        <div class="addcomp7"><b>Add Skills</b></div>
+      </div>
+      <div class="midpop7">
+        <div class="namepop7">
+          <h1 class="nameadd7">Select Phase</h1>
+          <p class="redname7">*</p>
+        </div>
+        <div class="compname7">
+          <mat-form-field class="example-full-width">
+            <mat-label>Select Phase</mat-label>
+            <mat-select [(ngModel)]="addSkillPhase" name="addSkillPhase">
+              <mat-option *ngFor="let item of uniqueHeader" [value]="item">{{ item }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="namepop7">
+          <h1 class="nameadd7">Add new skills</h1>
+          <p class="redname7">*</p>
+        </div>
+        <div class="compname7">
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Add new skills" [(ngModel)]="newSkills" name="newSkills"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="bottom7">
+        <button class="cancel7" type="button" (click)="toggleAddSkill()">Cancel</button>
+        <button class="yes7" type="button" (click)="addSkills()">Save Skills</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Skills Form -->
+<div *ngIf="showEditSkillBox">
+  <div class="form-container">
+    <form>
+      <div class="head7">
+        <div class="addcomp7"><b>Edit Skills</b></div>
+      </div>
+      <div class="midpop7">
+        <div class="namepop7">
+          <h1 class="nameadd7">Select Phase</h1>
+          <p class="redname7">*</p>
+        </div>
+        <div class="compname7">
+          <mat-form-field class="example-full-width">
+            <mat-label>Select Phase</mat-label>
+            <mat-select [(ngModel)]="editSkillPhase" name="editSkillPhase">
+              <mat-option *ngFor="let item of uniqueHeader" [value]="item">{{ item }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="namepop7">
+          <h1 class="nameadd7">Select Skill</h1>
+          <p class="redname7">*</p>
+        </div>
+        <div class="compname7">
+          <mat-form-field class="example-full-width">
+            <mat-label>Select Skill</mat-label>
+            <mat-select [(ngModel)]="selectedSkill" name="selectedSkill">
+              <mat-option *ngFor="let skill of phaseSkillsets[editSkillPhase]" [value]="skill">{{ skill }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="namepop7">
+          <h1 class="nameadd7">Edit skill</h1>
+          <p class="redname7">*</p>
+        </div>
+        <div class="compname7">
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Edit skill" [(ngModel)]="editedSkill" name="editedSkill"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="bottom7">
+        <button class="cancel7" type="button" (click)="toggleEditSkill()">Cancel</button>
+        <button class="yes7" type="button" (click)="editSkill()">Save Skill</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Delete Skills Form -->
+<div *ngIf="showDeleteSkillBox">
+  <div class="form-container">
+    <form>
+      <div class="head7">
+        <div class="addcomp7"><b>Delete Skills</b></div>
+      </div>
+      <div class="midpop7">
+        <div class="namepop7">
+          <h1 class="nameadd7">Select Phase</h1>
+          <p class="redname7">*</p>
+        </div>
+        <div class="compname7">
+          <mat-form-field class="example-full-width">
+            <mat-label>Select Phase</mat-label>
+            <mat-select [(ngModel)]="deleteSkillPhase" name="deleteSkillPhase">
+              <mat-option *ngFor="let item of uniqueHeader" [value]="item">{{ item }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="namepop7">
+          <h1 class="nameadd7">Select Skill</h1>
+          <p class="redname7">*</p>
+        </div>
+        <div class="compname7">
+          <mat-form-field class="example-full-width">
+            <mat-label>Select Skill</mat-label>
+            <mat-select [(ngModel)]="selectedSkillToDelete" name="selectedSkillToDelete">
+              <mat-option *ngFor="let skill of phaseSkillsets[deleteSkillPhase]" [value]="skill">{{ skill }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="bottom7">
+        <button class="cancel7" type="button" (click)="toggleDeleteSkill()">Cancel</button>
+        <button class="yes7" type="button" (click)="deleteSkill()">Delete Skill</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Display Phases and Skills -->
+<div class="scrollable-container" *ngIf="Object.keys(phaseSkillsets).length > 0">
+  <div class="content">
+    <div class="row justify-content-center-flex-start">
+      <div *ngFor="let phase of uniqueHeader" class="col-md-3">
+        <table class="table-container">
+          <div class="scrollable-table">
+            <div>
+              <tr>
+                <th class="custom-table-header">
+                  <div class="head">
+                    <ng-container>{{ phase }}</ng-container>
+                  </div>
+                </th>
+              </tr>
+              <tr *ngFor="let skill of phaseSkillsets[phase]" class="head1">
+                <ng-container>{{ skill }}</ng-container>
+              </tr>
+            </div>
+          </div>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
